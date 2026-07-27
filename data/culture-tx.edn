@@ -1,0 +1,93 @@
+;; data/culture-tx.edn — DataScript tx-data derived from
+;; src/culture/facts.cljc `culture.facts/catalog` (ADR-2607171400).
+;; Generated, not hand-edited: test/culture/facts_test.clj asserts this
+;; file equals the catalog flattened in sorted-key order.
+
+[#:culture{:url "https://en.wikipedia.org/wiki/Peking_duck",
+           :id "beijing.dish.peking-duck",
+           :kind :dish,
+           :name-local "北京烤鸭",
+           :country "CHN",
+           :retrieved-at "2026-07-27",
+           :municipality "beijing",
+           :summary
+           "A dish from Beijing prepared since the Imperial era, characterised by thin, crispy skin; traditionally carved in front of diners and served in three stages, the skin first with sweet bean sauce, then meat wrapped in pancakes with cucumber and spring onion.",
+           :name "Peking duck",
+           :url-provenance :wikipedia-en}
+ #:culture{:url "https://en.wikipedia.org/wiki/Zhajiangmian",
+           :id "beijing.dish.zhajiangmian",
+           :kind :dish,
+           :name-local "炸酱面",
+           :country "CHN",
+           :retrieved-at "2026-07-27",
+           :municipality "beijing",
+           :summary
+           "Thick wheat noodles topped with zhajiang, a fermented soybean-based sauce; the dish originates in Shandong, and the Beijing variation is its best-known regional adaptation, recognised as one of the Ten Great Noodles of China.",
+           :name "Zhajiangmian",
+           :url-provenance :wikipedia-en}
+ #:culture{:url "https://en.wikipedia.org/wiki/Douzhi",
+           :id "beijing.dish.douzhi",
+           :kind :dish,
+           :name-local "豆汁",
+           :country "CHN",
+           :retrieved-at "2026-07-27",
+           :municipality "beijing",
+           :summary
+           "A traditional fermented mung-bean drink in Beijing cuisine with a recorded history of over 300 years, taken as a breakfast beverage alongside fried dough and pickled vegetables.",
+           :name "Douzhi",
+           :url-provenance :wikipedia-en}
+ #:culture{:url "https://en.wikipedia.org/wiki/Peking_opera",
+           :id "beijing.performing-art.peking-opera",
+           :kind :performing-art,
+           :name-local "京剧",
+           :country "CHN",
+           :retrieved-at "2026-07-27",
+           :municipality "beijing",
+           :summary
+           "The dominant form of Chinese opera, combining instrumental music, vocal performance, mime, martial arts, dance and acrobatics; it arose in Beijing in the mid-Qing dynasty and was fully developed by the mid-19th century, and was inscribed as UNESCO Intangible Cultural Heritage in 2010.",
+           :name "Peking opera",
+           :url-provenance :wikipedia-en}
+ #:culture{:url "https://en.wikipedia.org/wiki/Forbidden_City",
+           :id "beijing.heritage.forbidden-city",
+           :kind :heritage,
+           :name-local "紫禁城",
+           :country "CHN",
+           :retrieved-at "2026-07-27",
+           :municipality "beijing",
+           :summary
+           "The imperial palace complex at the centre of the Imperial City in Beijing; residence of 24 Ming and Qing emperors and the centre of political power in China for over 500 years from 1420 to 1924, designated a UNESCO World Heritage Site in 1987.",
+           :name "Forbidden City",
+           :url-provenance :wikipedia-en}
+ #:culture{:url "https://en.wikipedia.org/wiki/Temple_of_Heaven",
+           :id "beijing.heritage.temple-of-heaven",
+           :kind :heritage,
+           :name-local "天坛",
+           :country "CHN",
+           :retrieved-at "2026-07-27",
+           :municipality "beijing",
+           :summary
+           "A complex of imperial religious Confucian buildings in the south-eastern part of central Beijing, built between 1406 and 1420 under the Ming dynasty and inscribed as a UNESCO World Heritage Site in 1998.",
+           :name "Temple of Heaven",
+           :url-provenance :wikipedia-en}
+ #:culture{:url "https://en.wikipedia.org/wiki/Summer_Palace",
+           :id "beijing.heritage.summer-palace",
+           :kind :heritage,
+           :name-local "颐和园",
+           :country "CHN",
+           :retrieved-at "2026-07-27",
+           :municipality "beijing",
+           :summary
+           "A vast ensemble of lakes, gardens and palaces in Beijing, recognised as a masterpiece of Chinese landscape garden design and inscribed as a UNESCO World Heritage Site in 1998.",
+           :name "Summer Palace",
+           :url-provenance :wikipedia-en}
+ #:culture{:url "https://en.wikipedia.org/wiki/Badaling",
+           :id "beijing.heritage.badaling",
+           :kind :heritage,
+           :name-local "八达岭",
+           :country "CHN",
+           :retrieved-at "2026-07-27",
+           :municipality "beijing",
+           :summary
+           "The most visited section of the Great Wall of China, roughly 80 km north-west of central Beijing in Yanqing District; the portion of wall running through the site was built in 1504 during the Ming dynasty. The fetched source does NOT state a UNESCO designation for this section, so none is recorded here.",
+           :name "Badaling",
+           :url-provenance :wikipedia-en}]

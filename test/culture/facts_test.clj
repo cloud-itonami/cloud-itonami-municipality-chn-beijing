@@ -1,0 +1,65 @@
+(ns culture.facts-test
+  (:require [clojure.edn :as edn]
+            [clojure.string :as str]
+            [clojure.test :refer [deftest is testing]]
+            [culture.facts :as facts]))
+
+(deftest beijing-has-culture-basis
+  (let [sb (facts/spec-basis "beijing")]
+    (is (= 8 (count sb)))
+    (is (= (count sb) (count (set (map :culture/id sb)))) "ids are unique")
+    (is (every? #(str/starts-with? (:culture/url %) "https://") sb))
+    (is (every? #(= "beijing" (:culture/municipality %)) sb))
+    (is (every? #(= "CHN" (:culture/country %)) sb))
+    (is (every? #(seq (:culture/summary %)) sb))
+    (is (every? #(= "2026-07-27" (:culture/retrieved-at %)) sb))
+    (is (every? #(seq (:culture/name-local %)) sb) "every entry carries the local-language name")))
+
+(deftest unknown-municipality-has-no-basis
+  (is (nil? (facts/spec-basis "shanghai")))
+  (is (nil? (facts/spec-basis "zzz"))))
+
+(deftest coverage-is-honest
+  (let [c (facts/coverage ["beijing" "shanghai"])]
+    (is (= 2 (:requested c)))
+    (is (= 1 (:covered c)))
+    (is (= ["shanghai"] (:missing-municipalities c)))))
+
+(deftest by-kind-filters
+  (is (= 3 (count (facts/by-kind "beijing" :dish))))
+  (is (= 4 (count (facts/by-kind "beijing" :heritage))))
+  (is (= ["beijing.performing-art.peking-opera"]
+         (mapv :culture/id (facts/by-kind "beijing" :performing-art))))
+  (is (empty? (facts/by-kind "shanghai" :dish))))
+
+(deftest festival-and-craft-are-absent-not-guessed
+  (testing "both were investigated and dropped because the fetched sources did not tie them to Beijing"
+    (is (empty? (facts/by-kind "beijing" :festival)))
+    (is (empty? (facts/by-kind "beijing" :craft))))
+  (testing "and the coverage note says why, so silently filling them later without a source breaks the build"
+    (let [note (:note (facts/coverage))]
+      (is (str/includes? note ":festival"))
+      (is (str/includes? note ":craft")))))
+
+(deftest badaling-does-not-claim-a-unesco-designation-the-source-did-not-state
+  (let [badaling (first (filter #(= "beijing.heritage.badaling" (:culture/id %))
+                                (facts/spec-basis "beijing")))]
+    (is (str/includes? (:culture/summary badaling) "does NOT state a UNESCO designation"))
+    (testing "while the three entries whose sources DID state a UNESCO year do record it"
+      (is (every? #(str/includes? (:culture/summary %) "UNESCO")
+                  (filter #(#{"beijing.heritage.forbidden-city"
+                              "beijing.heritage.temple-of-heaven"
+                              "beijing.heritage.summer-palace"} (:culture/id %))
+                          (facts/spec-basis "beijing")))))))
+
+(deftest tx-file-matches-catalog
+  (let [tx (edn/read-string (slurp "data/culture-tx.edn"))
+        flat (mapcat val (sort-by key facts/catalog))]
+    (is (= (vec flat) (vec tx)))))
+
+(deftest every-attribute-used-is-declared-in-the-schema
+  (testing "schema/culture.edn is the same shape across every municipality-* sibling"
+    (let [declared (set (keys (edn/read-string (slurp "schema/culture.edn"))))
+          used (set (mapcat keys (mapcat val facts/catalog)))]
+      (is (empty? (remove declared used))
+          (str "undeclared: " (vec (remove declared used)))))))
