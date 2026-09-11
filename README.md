@@ -27,8 +27,8 @@ spec-basis**, full stop — never fabricate one.
 
 ## Data
 
-- `src/ordinance/facts.cljc` — 2 ordinance entries, source of truth.
-- `src/culture/facts.cljc` — 8 culture entries, source of truth.
+- `src/ordinance/facts.cljk` — 2 ordinance entries, source of truth.
+- `src/culture/facts.cljk` — 8 culture entries, source of truth.
 - `schema/ordinance.edn` / `schema/culture.edn` — DataScript schemas,
   **deliberately identical to every sibling**; that uniformity is what
   lets the federated query join across repos. A test asserts every

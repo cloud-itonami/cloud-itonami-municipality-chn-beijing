@@ -1,6 +1,6 @@
 ;; data/culture-tx.edn — DataScript tx-data derived from
-;; src/culture/facts.cljc `culture.facts/catalog` (ADR-2607171400).
-;; Generated, not hand-edited: test/culture/facts_test.clj asserts this
+;; src/culture/facts.cljk `culture.facts/catalog` (ADR-2607171400).
+;; Generated, not hand-edited: test/culture/facts_test.cljk asserts this
 ;; file equals the catalog flattened in sorted-key order.
 
 [#:culture{:url "https://en.wikipedia.org/wiki/Peking_duck",
