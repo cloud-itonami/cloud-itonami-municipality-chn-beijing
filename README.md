@@ -78,4 +78,4 @@ itself remains the municipality's; this repo stores only citation metadata.
 
 ## Running it
 
-`clojure -M:test` (16 tests, 47 assertions) and `clojure -M:lint`.
+`kbb -M:test` (16 tests, 47 assertions) and `kbb -M:lint`.
